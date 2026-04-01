@@ -42,8 +42,7 @@ The analysis is conducted entirely in Python using a Jupyter Notebook, progressi
 ```
 ├── BBS_CMA_Team_Assignment2__1_.ipynb   # notebook (latest version)
 ├── BBS_CMA_Team_Assignment1.ipynb       # Earlier draft
-├── Team_Assignment_1_Data_2026.csv      # Dataset (not included in repo)
-└── README.md
+├── Team_Assignment_1_Data_2026.csv      # Dataset 
 ```
 
 ---
