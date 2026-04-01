@@ -103,6 +103,6 @@ The notebook is designed to run on **Google Colab**. Data is loaded via `google.
 
 ## Notes
 
-- Use `BBS_CMA_Team_Assignment2__1_.ipynb` — it is the most complete version, including VIF checks, richer markdown commentary, and interaction analysis
+- Use `BBS_CMA_Team_Assignment2__1_.ipynb` — including VIF checks, richer markdown commentary, interaction analysis
 - `BBS_CMA_Team_Assignment1.ipynb` is an earlier draft kept for reference
 - Marketing implications sections in Q2, Q3, and the Executive Summary are placeholders to be completed before final submission
