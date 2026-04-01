@@ -40,8 +40,8 @@ The analysis is conducted entirely in Python using a Jupyter Notebook, progressi
 ## Project Structure
 
 ```
-├── BBS_CMA_Team_Assignment2__1_.ipynb   # notebook (latest version)
-├── BBS_CMA_Team_Assignment1.ipynb       # Earlier draft
+├── BBS_CMA_Team_Assignment2__1_.ipynb   # notebook by GL+ II (latest version)
+├── BBS_CMA_Team_Assignment1.ipynb       # Orginal Work by GL/Earlier draft
 ├── Team_Assignment_1_Data_2026.csv      # Dataset 
 ```
 
