@@ -50,8 +50,9 @@ The analysis is conducted entirely in Python using a Jupyter Notebook, progressi
 ## Project Structure
  
 ```
-├── BBS_CMA_Team_Assignment2__1_.ipynb   # Final version (use this one)
-├── BBS_CMA_Team_Assignment1.ipynb       # Earlier draft (kept for reference)
+├── BBS_CMA_Team_Assignment1_V1.2.ipynb  # Final version by Francesco (use this one)
+├── BBS_CMA_Team_Assignment1_GL.ipynb    # Giulia Lorelli's earlier draft
+├── BBS_CMA_Team_Assignment1_II.ipynb    # Israa Ismail's earlier draft
 ├── Team_Assignment_1_Data_2026.csv      # Dataset
 └── README.md
 ```
@@ -104,7 +105,7 @@ pip install pandas numpy matplotlib seaborn statsmodels scipy
  
 ## How to Run
  
-1. Open `BBS_CMA_Team_Assignment2__1_.ipynb` in Google Colab
+1. Open `BBS_CMA_Team_Assignment1_V1.2.ipynb` in Google Colab
 2. Run the setup cell to install dependencies
 3. When prompted, upload `Team_Assignment_1_Data_2026.csv`
 4. Run all cells in order (Cell → Run All)
@@ -120,7 +121,7 @@ Econometric Society Monograph No. 30, Cambridge University Press.
  
 ## AI Use Disclaimer
  
-This project was completed with the assistance of AI tools (Claude by Anthropic) for the following purposes:
+This project was completed with the assistance of AI tools (Claude by Anthropic, Antigravity by google) for the following purposes:
 - Code debugging and syntax support
 - Markdown formatting and documentation
 - Reviewing and structuring written commentary
@@ -128,4 +129,3 @@ This project was completed with the assistance of AI tools (Claude by Anthropic)
 All analytical decisions — including model selection, variable choice, interpretation of results, and marketing implications — were made by the team. AI was not used to generate or replace any core analysis or regression outputs.
  
 This disclaimer is included in accordance with BBS guidelines on the responsible use of AI in academic work.
- 
