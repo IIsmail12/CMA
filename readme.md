@@ -9,12 +9,11 @@
  
 | Team Member | Role |
 |---|---|
-| Giulia Lorelli | Code & Analysis |
-| Israa Ismail | Code & Analysis |
+| Iolanda Costa | Analysis, Interpretation & Slides |
+| Romain Derguini | Analysis, Interpretation & Slides |
 | Francesco Gambera | Code & Analysis |
-| Iolanda Costa | Analysis, Interpretation, Slides & Presentation |
-| Romain Derguini | Analysis, Interpretation, Slides & Presentation |
- 
+| Israa Ismail | Code & Analysis |
+| Giulia Lorelli | Code & Analysis |
 ---
  
 ## Overview
