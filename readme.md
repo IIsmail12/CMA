@@ -2,106 +2,130 @@
 ## Team Assignment 1 — 2026
 ### What Makes an Influencer Post Work?
 
-**Team members:** Giulia Lorelli, Francesco Gambera, Romain Derguini, Israa Ismail, Iolanda Costa
 
 ---
-
+ 
+## Team & Contributions
+ 
+| Team Member | Role |
+|---|---|
+| Giulia Lorelli | Code & Analysis |
+| Israa Ismail | Code & Analysis |
+| Francesco Gambera | Code & Analysis |
+| Iolanda Costa | Analysis, Interpretation, Slides & Presentation |
+| Romain Derguini | Analysis, Interpretation, Slides & Presentation |
+ 
+---
+ 
 ## Overview
-
-This project analyses a dataset of 600 influencer posts on behalf of **Pulse Digital**, a fictional influencer marketing agency. The goal is to identify which post characteristics — caption content, sentiment, platform, influencer profile — drive three key performance outcomes: engagement, click-through, and comments.
-
+ 
+This project analyses a dataset of 600 influencer posts on behalf of **Pulse Digital**, a digital influencer marketing agency. The goal is to identify which post characteristics — caption content, sentiment, platform, and influencer profile — drive three key performance outcomes: engagement, click-through, and comment volume.
+ 
 The analysis is conducted entirely in Python using a Jupyter Notebook, progressing through four research questions (Q0–Q4).
-
+ 
 ---
-
+ 
 ## Dataset
-
-**File:** `Team_Assignment_1_Data_2026.csv` (semicolon-delimited)
-
-**Key variables:**
-
+ 
+**File:** `Team_Assignment_1_Data_2026.csv`  
+**Source:** Provided by BBS / Dr. Umut Konuş (2026)
+ 
 | Variable | Type | Description |
 |---|---|---|
 | `Engagement_Rate` | Continuous (%) | % of audience that engaged with the post |
 | `Click_Through` | Binary (0/1) | Whether the post drove traffic to the brand site |
 | `Comment_Count` | Count (integer ≥ 0) | Number of comments on the post |
-| `Caption_Sentiment` | Continuous | Sentiment score of the caption |
-| `ZCaption_Length` | Continuous (standardised) | Standardised caption length |
-| `Topic_*_Positive/Negative` | Binary | LDA-derived topic presence flags |
-| `Platform` | Categorical | Instagram or TikTok |
-| `Post_Type` | Categorical | Video or Image |
-| `Product_Category` | Categorical (3 levels) | Beauty & Skincare, Fashion & Apparel, Tech & Gadgets |
-| `Influencer_Tier` | Categorical | Nano / Micro / Macro / Mega |
+| `Caption_Sentiment` | Ordinal 1–5 | NLP sentiment score of the caption |
+| `ZCaption_Length` | Continuous | Standardised caption length (z-score) |
+| `Topic_*_Positive/Negative` | Binary | Zero-shot classification topic flags |
+| `Platform` | Binary | 0=Instagram, 1=TikTok |
+| `Post_Type` | Binary | 0=Static Photo, 1=Short Video/Reel |
+| `Product_Category` | Nominal (3 levels) | 0=Beauty & Skincare, 1=Fashion, 2=Tech |
+| `Influencer_Tier` | Binary | 0=Micro (≤50k), 1=Macro (>50k) |
 | `Follower_Count_K` | Continuous | Follower count in thousands |
 | `Influencer_Age` | Continuous | Age of the influencer |
-
+ 
 ---
-
+ 
 ## Project Structure
-
+ 
 ```
-├── BBS_CMA_Team_Assignment2__1_.ipynb   # notebook by GL+ II (latest version)
-├── BBS_CMA_Team_Assignment1.ipynb       # Orginal Work by GL/Earlier draft
-├── Team_Assignment_1_Data_2026.csv      # Dataset 
+├── BBS_CMA_Team_Assignment2__1_.ipynb   # Final version (use this one)
+├── BBS_CMA_Team_Assignment1.ipynb       # Earlier draft (kept for reference)
+├── Team_Assignment_1_Data_2026.csv      # Dataset
+└── README.md
 ```
-
+ 
 ---
-
+ 
 ## Analysis
-
+ 
 ### Q0 — Data Preparation
 - Missing value check and descriptive statistics
-- Dummy coding for `Product_Category` (reference: Beauty & Skincare)
-- Standardisation of `Caption_Length` → `ZCaption_Length`
+- Dummy coding for `Product_Category` (reference group: Beauty & Skincare)
 - Distribution plots for all three dependent variables
-- Multicollinearity check via VIF (all values < 5)
-
+- Multicollinearity check via VIF (all values < 5 — no issue)
+ 
 ### Q1 — Engagement Rate (OLS Linear Regression)
 - Dependent variable: `Engagement_Rate` (continuous)
 - Model: Ordinary Least Squares
-- Outputs: regression summary, coefficient plot (significant predictors highlighted)
-
+- Key findings: TikTok and Short Video are strongest drivers; Micro-influencers outperform Macro on engagement rate
+- Outputs: regression summary, coefficient plot
+ 
 ### Q2 — Click-Through (Logistic Regression)
 - Dependent variable: `Click_Through` (binary)
-- Model: Logit
-- Outputs: log-odds coefficients, marginal effects, coefficient plot
-
-### Q3 — Comment Count (Count Regression)
+- Model: Logit with Average Marginal Effects
+- Key findings: Scarcity-framed promo deals (+39.2%), positive CTA (+19.6%), Macro influencers (+16%) drive clicks
+- Outputs: log-odds coefficients, marginal effects table, coefficient plot
+ 
+### Q3 — Comment Count (Negative Binomial Regression)
 - Dependent variable: `Comment_Count` (non-negative integer)
-- Model selection: Poisson vs Negative Binomial based on overdispersion test (var/mean ratio)
-- Overdispersion confirmed → Negative Binomial used
-- Outputs: regression summary, coefficient plot
-
+- Model selection: overdispersion test confirmed var/mean ratio of 41.39 → Negative Binomial chosen over Poisson
+- Key findings: TikTok (+38 comments), Short Video (+27 comments), positive CTA (+17 comments)
+- Outputs: regression summary, marginal effects, coefficient plot
+ 
 ### Q4 — Interaction Effects
 - Base model: Q1 (Engagement Rate — OLS)
-- Interaction 1: `Topic_CTA_Positive × Platform` — Does a positive CTA work differently on Instagram vs TikTok?
-- Interaction 2: `Post_Type × Caption_Sentiment` — Does sentiment matter more for videos or images?
-- Model comparison: baseline vs interaction model (R², Adjusted R², AIC)
-- Output: interaction plot (CTA × Platform)
-
+- Interaction 1: `Topic_CTA_Positive × Platform` — Does a CTA work differently on Instagram vs TikTok?
+- Interaction 2: `Post_Type × Caption_Sentiment` — Does sentiment impact videos differently than photos?
+- Result: neither interaction significant (p=0.815, p=0.750) — confirmed via AIC comparison and ANOVA F-test (p=0.928)
+- Takeaway: positive CTA is platform-agnostic; keep strategy simple
+- Output: interaction plot (CTA × Platform), model comparison table
+ 
 ---
-
+ 
 ## Dependencies
-
+ 
 ```bash
 pip install pandas numpy matplotlib seaborn statsmodels scipy
 ```
-
-The notebook is designed to run on **Google Colab**. Data is loaded via `google.colab.files.upload()`.
-
+ 
 ---
-
+ 
 ## How to Run
-
+ 
 1. Open `BBS_CMA_Team_Assignment2__1_.ipynb` in Google Colab
 2. Run the setup cell to install dependencies
 3. When prompted, upload `Team_Assignment_1_Data_2026.csv`
 4. Run all cells in order (Cell → Run All)
-
+ 
 ---
-
-## Notes
-
-- Use `BBS_CMA_Team_Assignment2__1_.ipynb` — including VIF checks, richer markdown commentary, interaction analysis
-- `BBS_CMA_Team_Assignment1.ipynb` is an earlier draft kept for reference
-- Marketing implications sections in Q2, Q3, and the Executive Summary are placeholders to be completed before final submission
+ 
+## Reference
+ 
+Cameron, A.C. & Trivedi, P.K. (1998). *Regression Analysis of Count Data.*  
+Econometric Society Monograph No. 30, Cambridge University Press.
+ 
+---
+ 
+## AI Use Disclaimer
+ 
+This project was completed with the assistance of AI tools (Claude by Anthropic) for the following purposes:
+- Code debugging and syntax support
+- Markdown formatting and documentation
+- Reviewing and structuring written commentary
+ 
+All analytical decisions — including model selection, variable choice, interpretation of results, and marketing implications — were made by the team. AI was not used to generate or replace any core analysis or regression outputs.
+ 
+This disclaimer is included in accordance with BBS guidelines on the responsible use of AI in academic work.
+ 
